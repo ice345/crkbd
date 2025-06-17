@@ -1,0 +1,17 @@
+name: Clone Releases from Upstream
+
+on:
+  schedule:
+    - cron: "0 */12 * * *"  # 每 12 小时运行一次
+  workflow_dispatch:  # 允许手动触发
+
+jobs:
+  clone-releases:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone Releases
+        uses: andrewthetechie/gha-clone-releases@v1.9.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          src_repo: foostan/crkbd
+          copy_assets: true
